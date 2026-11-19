@@ -1,0 +1,1 @@
+using transdata as service from '../../srv/transporterservice';

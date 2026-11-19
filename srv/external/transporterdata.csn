@@ -1,0 +1,237 @@
+{
+ "meta": {
+  "creator": "cds-dk 10.2.1"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "transporterdata.EntityControl": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "Deletable": {
+     "type": "cds.Boolean",
+     "notNull": true
+    },
+    "Updatable": {
+     "type": "cds.Boolean",
+     "notNull": true
+    }
+   }
+  },
+  "transporterdata.SAP__Message": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "code": {
+     "type": "cds.String",
+     "notNull": true
+    },
+    "message": {
+     "type": "cds.String",
+     "notNull": true
+    },
+    "target": {
+     "type": "cds.String"
+    },
+    "additionalTargets": {
+     "items": {
+      "type": "cds.String",
+      "notNull": true
+     }
+    },
+    "transition": {
+     "type": "cds.Boolean",
+     "notNull": true
+    },
+    "numericSeverity": {
+     "type": "cds.Integer",
+     "@odata.Type": "Edm.Byte",
+     "notNull": true
+    },
+    "longtextUrl": {
+     "type": "cds.String"
+    }
+   }
+  },
+  "transporterdata": {
+   "kind": "service",
+   "@cds.external": true,
+   "@Aggregation.ApplySupported.Transformations": [
+    "aggregate",
+    "groupby",
+    "filter"
+   ],
+   "@Aggregation.ApplySupported.Rollup": {
+    "#": "None"
+   },
+   "@Common.ApplyMultiUnitBehaviorForSortingAndFiltering": true,
+   "@Capabilities.FilterFunctions": [
+    "eq",
+    "ne",
+    "gt",
+    "ge",
+    "lt",
+    "le",
+    "and",
+    "or",
+    "contains",
+    "startswith",
+    "endswith",
+    "any",
+    "all"
+   ],
+   "@Capabilities.SupportedFormats": [
+    "application/json",
+    "application/pdf"
+   ],
+   "@PDF.Features.DocumentDescriptionReference": "../../../../default/iwbep/common/0001/$metadata",
+   "@PDF.Features.DocumentDescriptionCollection": "MyDocumentDescriptions",
+   "@PDF.Features.ArchiveFormat": true,
+   "@PDF.Features.Border": true,
+   "@PDF.Features.CoverPage": true,
+   "@PDF.Features.FitToPage": true,
+   "@PDF.Features.FontName": true,
+   "@PDF.Features.FontSize": true,
+   "@PDF.Features.Margin": true,
+   "@PDF.Features.Signature": true,
+   "@PDF.Features.ResultSizeDefault": 20000,
+   "@PDF.Features.ResultSizeMaximum": 20000
+  },
+  "transporterdata.DispTranspData": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "Vbeln": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "notNull": true,
+     "@Common.IsUpperCase": true,
+     "@Common.Label": "Billing Document",
+     "@Common.Heading": "Bill. Doc."
+    },
+    "Vehno": {
+     "type": "cds.String",
+     "length": 10,
+     "notNull": true
+    },
+    "Transgstn": {
+     "type": "cds.String",
+     "length": 15,
+     "notNull": true
+    },
+    "Enteredby": {
+     "type": "cds.String",
+     "length": 12,
+     "notNull": true,
+     "@Common.IsUpperCase": true,
+     "@Common.Label": "User Name",
+     "@Common.Heading": "User"
+    },
+    "Entereddt": {
+     "type": "cds.Date",
+     "@Common.Label": "Current Date",
+     "@Common.Heading": "Date",
+     "@Common.QuickInfo": "System Date"
+    },
+    "Enteredtm": {
+     "type": "cds.Time",
+     "notNull": true,
+     "@Common.Label": "Time",
+     "@Common.QuickInfo": "System Time"
+    }
+   },
+   "@Common.Label": "Inteface view for Updating Transporter Data",
+   "@Capabilities.SearchRestrictions.Searchable": false,
+   "@Capabilities.InsertRestrictions.Insertable": false,
+   "@Capabilities.DeleteRestrictions.Deletable": false,
+   "@Capabilities.UpdateRestrictions.Updatable": false,
+   "@Capabilities.UpdateRestrictions.QueryOptions.SelectSupported": true,
+   "@Capabilities.FilterRestrictions.FilterExpressionRestrictions": [
+    {
+     "Property": {
+      "=": "Enteredby"
+     },
+     "AllowedExpressions": "MultiValue"
+    }
+   ]
+  },
+  "transporterdata.UpdateTranspData": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "Vbeln": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "notNull": true,
+     "@Common.IsUpperCase": true,
+     "@Common.Label": "Billing Document",
+     "@Common.Heading": "Bill. Doc."
+    },
+    "Vehno": {
+     "type": "cds.String",
+     "length": 10,
+     "notNull": true
+    },
+    "Transgstn": {
+     "type": "cds.String",
+     "length": 15,
+     "notNull": true
+    },
+    "Enteredby": {
+     "type": "cds.String",
+     "length": 12,
+     "notNull": true,
+     "@Common.IsUpperCase": true,
+     "@Common.Label": "User Name",
+     "@Common.Heading": "User"
+    },
+    "Entereddt": {
+     "type": "cds.Date",
+     "@Common.Label": "Current Date",
+     "@Common.Heading": "Date",
+     "@Common.QuickInfo": "System Date"
+    },
+    "Enteredtm": {
+     "type": "cds.Time",
+     "notNull": true,
+     "@Common.Label": "Time",
+     "@Common.QuickInfo": "System Time"
+    },
+    "__EntityControl": {
+     "type": "transporterdata.EntityControl",
+     "@Core.Computed": true,
+     "@UI.HiddenFilter": true,
+     "@UI.Hidden": true
+    },
+    "SAP__Messages": {
+     "items": {
+      "type": "transporterdata.SAP__Message",
+      "notNull": true
+     }
+    }
+   },
+   "@Common.Label": "Root View for Update Transporter Data",
+   "@Common.Messages": {
+    "=": "SAP__Messages"
+   },
+   "@Capabilities.SearchRestrictions.Searchable": false,
+   "@Capabilities.FilterRestrictions.NonFilterableProperties": [
+    "__EntityControl"
+   ],
+   "@Capabilities.SortRestrictions.NonSortableProperties": [
+    "__EntityControl"
+   ],
+   "@Capabilities.DeleteRestrictions.Deletable": {
+    "=": "__EntityControl/Deletable"
+   },
+   "@Capabilities.UpdateRestrictions.Updatable": {
+    "=": "__EntityControl/Updatable"
+   },
+   "@Capabilities.UpdateRestrictions.QueryOptions.SelectSupported": true
+  }
+ }
+}

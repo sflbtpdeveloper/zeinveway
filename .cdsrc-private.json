@@ -1,0 +1,48 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "destinations": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.in30.hana.ondemand.com",
+          "org": "Sundram Fasteners Ltd_sfl-sd-dev-xx295178",
+          "space": "CAPMAPPS",
+          "instance": "zeinv_dest",
+          "key": "zeinv_dest-key"
+        },
+        "kind": "destinations",
+        "vcap": {
+          "name": "destinations"
+        }
+      },
+      "connectivity": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.in30.hana.ondemand.com",
+          "org": "Sundram Fasteners Ltd_sfl-sd-dev-xx295178",
+          "space": "CAPMAPPS",
+          "instance": "zeinv_connect",
+          "key": "zeinv_connect_key"
+        },
+        "kind": "connectivity",
+        "vcap": {
+          "name": "connectivity"
+        }
+      },
+      "auth": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.in30.hana.ondemand.com",
+          "org": "Sundram Fasteners Ltd_sfl-sd-dev-xx295178",
+          "space": "CAPMAPPS",
+          "instance": "zeinveway-xsuaa",
+          "key": "zeinveway-xsuaa-key"
+        },
+        "kind": "xsuaa-auth",
+        "vcap": {
+          "name": "auth"
+        }
+      }
+    }
+  }
+}

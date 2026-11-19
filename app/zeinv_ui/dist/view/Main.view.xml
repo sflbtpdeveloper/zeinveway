@@ -1,0 +1,66 @@
+<mvc:View controllerName="zeinvui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <IconTabBar id="tabBar" expandable="false" select=".onTabSelect"
+            class="sapUiResponsiveContentPadding">
+            <items>
+                <IconTabFilter id="uploadTab" key="upload" icon="sap-icon://upload"
+                    text="Upload Transporter Details">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout"
+                        columnsM="1" columnsL="1" columnsXL="1"
+        labelSpanM="4" labelSpanL="4" labelSpanXL="4">
+                        <Label text="Invoice No" required="true"/>
+                        <Input value="{form>/Vbeln}" maxLength="10" width="15rem"/>
+
+                        <Label text="Vehicle No" required="true"/>
+                        <Input value="{form>/Vehno}" maxLength="15" width="15rem"/>
+
+                        <Label text="Transporter GSTN" required="true"/>
+                        <Input value="{form>/Transgstn}" maxLength="15" width="15rem"/>
+                    </form:SimpleForm>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button text="Clear" press=".onClear"/>
+                        <Button text="Submit" type="Emphasized" press=".onSubmit"/>
+                    </Toolbar>
+                </IconTabFilter>
+
+                <IconTabFilter id="reportTab" key="report" icon="sap-icon://table-view"
+                    text="Transporter Report">
+                    <Table id="reportTable" items="{/DispTranspDataType}" growing="true"
+                        growingThreshold="50" sticky="ColumnHeaders">
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="Transporter Details"/>
+                                <ToolbarSpacer/>
+                                <Button icon="sap-icon://refresh" tooltip="Refresh"
+                                    press=".onRefresh"/>
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column><Text text="Delivery No"/></Column>
+                            <Column><Text text="Vehicle No"/></Column>
+                            <Column><Text text="Transporter GSTN"/></Column>
+                            <Column><Text text="Entered By"/></Column>
+                            <Column><Text text="Entered On"/></Column>
+                            <Column><Text text="Time"/></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <Text text="{Vbeln}"/>
+                                <Text text="{Vehno}"/>
+                                <Text text="{Transgstn}"/>
+                                <Text text="{Enteredby}"/>
+                                <Text text="{Entereddt}"/>
+                                <Text text="{Enteredtm}"/>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </Page>
+</mvc:View>

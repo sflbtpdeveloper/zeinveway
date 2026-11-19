@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel","sap/m/MessageBox","sap/m/MessageToast"],e=>{"use strict";return e.extend("zeinvui.controller.App",{onInit(){}})});
+//# sourceMappingURL=App.controller.js.map

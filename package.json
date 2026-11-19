@@ -1,0 +1,49 @@
+{
+  "name": "zeinveway",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sap/cds": "^10",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-zeinv_ui": "cds watch --open zeinvui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy zeinveway --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "transporterdata": {
+        "kind": "odata",
+        "model": "srv/external/transporterdata",
+        "csrf": true,
+        "csrfInBatch": true,        
+        "credentials": {
+          "destination": "SFD_SSO",
+          "path": "/sap/opu/odata4/sap/zsb_upd_transpdata/srvd/sap/zsd_vupd_i_transport/0001"
+        }
+      },
+      "[production]": {
+        "auth": "xsuaa"
+      },
+      "connectivity": true,
+      "html5-repo": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ]
+}

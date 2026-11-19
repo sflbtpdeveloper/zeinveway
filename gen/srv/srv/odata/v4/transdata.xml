@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="transdata" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <Annotation Term="Core.Links">
+        <Collection>
+          <Record>
+            <PropertyValue Property="rel" String="author"/>
+            <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+          </Record>
+        </Collection>
+      </Annotation>
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="DispTranspDataType" EntityType="transdata.DispTranspDataType"/>
+        <EntitySet Name="UpdateTranspDataType" EntityType="transdata.UpdateTranspDataType"/>
+      </EntityContainer>
+      <EntityType Name="DispTranspDataType">
+        <Key>
+          <PropertyRef Name="Vbeln"/>
+        </Key>
+        <Property Name="Vbeln" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Vehno" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Transgstn" Type="Edm.String" MaxLength="15" Nullable="false"/>
+        <Property Name="Enteredby" Type="Edm.String" MaxLength="12" Nullable="false"/>
+        <Property Name="Entereddt" Type="Edm.Date"/>
+        <Property Name="Enteredtm" Type="Edm.TimeOfDay" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="UpdateTranspDataType">
+        <Key>
+          <PropertyRef Name="Vbeln"/>
+        </Key>
+        <Property Name="Vbeln" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Vehno" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Transgstn" Type="Edm.String" MaxLength="15" Nullable="false"/>
+      </EntityType>
+      <Annotations Target="transdata.DispTranspDataType">
+        <Annotation Term="Common.Label" String="Inteface view for Updating Transporter Data"/>
+      </Annotations>
+      <Annotations Target="transdata.EntityContainer/DispTranspDataType">
+        <Annotation Term="Capabilities.SearchRestrictions">
+          <Record Type="Capabilities.SearchRestrictionsType">
+            <PropertyValue Property="Searchable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+            <PropertyValue Property="QueryOptions">
+              <Record Type="Capabilities.ModificationQueryOptionsType">
+                <PropertyValue Property="SelectSupported" Bool="true"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="FilterExpressionRestrictions">
+              <Collection>
+                <Record Type="Capabilities.FilterExpressionRestrictionType">
+                  <PropertyValue Property="Property" PropertyPath="Enteredby"/>
+                  <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="transdata.DispTranspDataType/Vbeln">
+        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+        <Annotation Term="Common.Label" String="Billing Document"/>
+        <Annotation Term="Common.Heading" String="Bill. Doc."/>
+      </Annotations>
+      <Annotations Target="transdata.DispTranspDataType/Enteredby">
+        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+        <Annotation Term="Common.Label" String="User Name"/>
+        <Annotation Term="Common.Heading" String="User"/>
+      </Annotations>
+      <Annotations Target="transdata.DispTranspDataType/Entereddt">
+        <Annotation Term="Common.Label" String="Current Date"/>
+        <Annotation Term="Common.Heading" String="Date"/>
+        <Annotation Term="Common.QuickInfo" String="System Date"/>
+      </Annotations>
+      <Annotations Target="transdata.DispTranspDataType/Enteredtm">
+        <Annotation Term="Common.Label" String="Time"/>
+        <Annotation Term="Common.QuickInfo" String="System Time"/>
+      </Annotations>
+      <Annotations Target="transdata.UpdateTranspDataType">
+        <Annotation Term="Common.Label" String="Root View for Update Transporter Data"/>
+        <Annotation Term="Common.Messages" Path="SAP__Messages"/>
+      </Annotations>
+      <Annotations Target="transdata.EntityContainer/UpdateTranspDataType">
+        <Annotation Term="Capabilities.SearchRestrictions">
+          <Record Type="Capabilities.SearchRestrictionsType">
+            <PropertyValue Property="Searchable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="NonFilterableProperties">
+              <Collection>
+                <PropertyPath>__EntityControl</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.SortRestrictions">
+          <Record Type="Capabilities.SortRestrictionsType">
+            <PropertyValue Property="NonSortableProperties">
+              <Collection>
+                <PropertyPath>__EntityControl</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Path="__EntityControl/Deletable"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Path="__EntityControl/Updatable"/>
+            <PropertyValue Property="QueryOptions">
+              <Record Type="Capabilities.ModificationQueryOptionsType">
+                <PropertyValue Property="SelectSupported" Bool="true"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="transdata.UpdateTranspDataType/Vbeln">
+        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+        <Annotation Term="Common.Label" String="Billing Document"/>
+        <Annotation Term="Common.Heading" String="Bill. Doc."/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
